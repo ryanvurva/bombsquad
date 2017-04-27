@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+
 $base-text-size: 16px;
-$base-font-family: sans-serif;
+$base-font-family: 'Bungee Inline', cursive;
 
 // Remove the browsers built-in styling for lists elements.
 @mixin reset-list {
