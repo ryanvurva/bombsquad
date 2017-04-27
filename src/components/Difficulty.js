@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom'
 
 class Difficulty extends Component {
   render () {
-    return <div className='overlay'>
-      <div className='dialog'>
+    return <div className=''>
+      <div className='Difficulty'>
         <h3>Select Difficulty:</h3>
         <NavLink to='/games'>Beginner</NavLink>
         <NavLink to='/games'>Normal</NavLink>

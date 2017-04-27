@@ -17,6 +17,10 @@ body {
   background-size: cover;
   background-attachment: fixed;
   // overflow: hidden;
+
+  .App {
+    // height: 800px;
+  }
 }
 
 header {
@@ -33,21 +37,16 @@ header {
 }
 
 main {
-  height: 80vh;
+  height: 600px;
   display: flex;
   justify-content: center;
   margin: auto;
   color: #ccc;
   font-family: 'Press Start 2P', cursive;
 
-  h2 {
-    // color: #ccc;
-  }
-
-  .Difficulty {
+  .Title {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin: 0 auto 10px auto;
 
     img {
@@ -62,21 +61,41 @@ main {
     .Coin {
       margin-top: 30px;
 
-      a img {
+      img {
         width: 100px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         margin: auto;
+        animation: float 3s ease-in-out infinite;
+
+        &:active {
+
+        }
+
+        @keyframes float {
+  	      0% {
+  		      box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+  		      transform: translatey(0px);
+  	      }
+  	      50% {
+  		      box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+  		      transform: translatey(-10px);
+  	      }
+  	      100% {
+  		      box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+  		      transform: translatey(0px);
+  	      }
+        }
       }
     }
   }
 
-  .dialog {
+  .Difficulty {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: auto;
+    margin: 50px auto;
 
     h3 {
       text-align: center;
@@ -109,7 +128,7 @@ footer {
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
-  // position: fixed;
+  // position: absolute;
   // bottom: 0;
   // left: 0;
   // right: 0;
