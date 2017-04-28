@@ -2,6 +2,8 @@
 
 $base-text-size: 16px;
 $base-font-family: 'Bungee Inline', cursive;
+$yellow: hsl(45, 80%, 51%);
+$fadedyellow: hsla(45, 80%, 51%, 0.9);
 
 // Remove the browsers built-in styling for lists elements.
 @mixin reset-list {

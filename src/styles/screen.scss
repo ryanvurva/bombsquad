@@ -29,7 +29,7 @@ header {
   margin: auto;
 
   h1 {
-    color: #ccc;
+    color: yellow;
     text-decoration: underline;
     font-size: 3em;
     margin-bottom: 0;
@@ -41,7 +41,7 @@ main {
   display: flex;
   justify-content: center;
   margin: auto;
-  color: #ccc;
+  color: yellow;
   font-family: 'Press Start 2P', cursive;
 
   .Title {
@@ -54,7 +54,7 @@ main {
     }
 
     h2 {
-      color: hsl(45, 80%, 51%);
+      color: yellow;
       text-align: center;
     }
 
@@ -67,10 +67,94 @@ main {
         flex-direction: column;
         justify-content: center;
         margin: auto;
-        animation: float 3s ease-in-out infinite;
+        // animation: bounce-top 0.9s both infinite;
+        // animation: float 3s ease-in-out infinite;
+        animation: rotateY 2s infinite linear;
 
         &:active {
+          animation: bounce-top 0.9s both;
 
+          @keyframes bounce-top {
+            0% {
+              transform: translateY(-45px);
+              animation-timing-function: ease-in;
+              opacity: 1;
+            }
+            24% {
+              opacity: 1;
+            }
+            40% {
+              transform: translateY(-24px);
+              animation-timing-function: ease-in;
+            }
+            65% {
+              transform: translateY(-12px);
+              animation-timing-function: ease-in;
+            }
+            82% {
+              transform: translateY(-6px);
+              animation-timing-function: ease-in;
+            }
+            93% {
+              transform: translateY(-4px);
+              animation-timing-function: ease-in;
+            }
+            25%,
+            55%,
+            75%,
+            87% {
+              transform: translateY(0px);
+              animation-timing-function: ease-out;
+            }
+            100% {
+              transform: translateY(0px);
+              animation-timing-function: ease-out;
+              opacity: 1;
+            }
+          }
+        }
+
+        @keyframes rotateY {
+          to { transform: rotateY(360deg); }
+        }
+
+        @keyframes bounce-top {
+          0% {
+            transform: translateY(-45px);
+            animation-timing-function: ease-in;
+            opacity: 1;
+          }
+          24% {
+            opacity: 1;
+          }
+          40% {
+            transform: translateY(-24px);
+            animation-timing-function: ease-in;
+          }
+          65% {
+            transform: translateY(-12px);
+            animation-timing-function: ease-in;
+          }
+          82% {
+            transform: translateY(-6px);
+            animation-timing-function: ease-in;
+          }
+          93% {
+            transform: translateY(-4px);
+            animation-timing-function: ease-in;
+          }
+          25%,
+          55%,
+          75%,
+          87% {
+            transform: translateY(0px);
+            animation-timing-function: ease-out;
+          }
+          100% {
+            transform: translateY(0px);
+            animation-timing-function: ease-out;
+            opacity: 1;
+          }
         }
 
         @keyframes float {
@@ -100,6 +184,7 @@ main {
     h3 {
       text-align: center;
       text-decoration: underline;
+      color: red;
     }
 
     a {
@@ -109,7 +194,7 @@ main {
       color: inherit;
 
       &:hover {
-        color: hsl(45, 80%, 51%);
+        color: red;
       }
     }
   }
@@ -117,7 +202,7 @@ main {
   .Game {
     margin-top: 50px;
     font-size: 2em;
-    color: #ccc;
+    color: red;
   }
 }
 
@@ -132,7 +217,9 @@ footer {
   // bottom: 0;
   // left: 0;
   // right: 0;
-  background-color: hsla(0, 0%, 60%, .8);
+  background-color: yellow;
+  // background-color: hsla(0, 0%, 60%, .8);
+  border-top: thick solid red;
 
   img {
     position: absolute;
