@@ -1,96 +1,48 @@
 import React, { Component } from 'react'
-// import { observer } from 'mobx'
-// import store from './store'
+import store from './store'
+import { observer } from 'mobx-react'
 
-// @observer
+@observer
 class GameBoard extends Component {
+  componentDidMount () {
+    const id = this.props.match.params.id
+    window.fetch(`http://minesweeper-api.herokuapp.com/games/${id}`)
+      .then(res => res.json())
+      .then(data => {
+        store.board = data.board
+      })
+  }
+
+  _click = (x, y) => {
+    const id = this.props.match.params.id
+    window.fetch(`http://minesweeper-api.herokuapp.com/games/${id}/check`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        row: y,
+        col: x
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      store.board = data.board
+    })
+  }
+
   render () {
-    return <div className='Game'>
-      <table>
-        <tbody>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
+    return <div className='gameboard'><div className='Game'><table>
+      <tbody>
+        {store.board.map((row, y) => {
+          return <tr key={y}>
+            {row.map((col, x) => {
+              return <td className='cell' key={x} onClick={() => {
+                this._click(x, y)
+              }}>{col}</td>
+            })}
           </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-          <tr>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-            <td><i className='fa fa-bomb' aria-hidden='true' /></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        })}
+      </tbody>
+    </table></div></div>
   }
 }
 

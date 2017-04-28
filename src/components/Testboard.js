@@ -35,7 +35,7 @@ class Testboard extends Component {
         {store.board.map((row, y) => {
           return <tr key={y}>
             {row.map((col, x) => {
-              return <td key={x} onClick={() => {
+              return <td className='cell' key={x} onClick={() => {
                 this._click(x, y)
               }}>{col}</td>
             })}

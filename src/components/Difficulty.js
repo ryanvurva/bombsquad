@@ -10,9 +10,6 @@ class Difficulty extends Component {
         <button onClick={() => store.createGame(0)}>Beginner</button>
         <button onClick={() => store.createGame(1)}>Normal</button>
         <button onClick={() => store.createGame(2)}>Hard</button>
-        {/* <NavLink to='/games/' onClick={() => this.createGame(0)}>Beginner</NavLink>
-        <NavLink to='/games/:id' onClick={() => this.createGame(1)}>Normal</NavLink>
-        <NavLink to='/games/:id' onClick={() => this.createGame(2)}>Hard</NavLink> */}
       </div>
     </div>
   }

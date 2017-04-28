@@ -10,8 +10,8 @@ import {
 import Header from './Header'
 import Home from './Home'
 import Difficulty from './Difficulty'
-// import GameBoard from './GameBoard'
-import Testboard from './Testboard'
+import GameBoard from './GameBoard'
+// import Testboard from './Testboard'
 import Footer from './Footer'
 
 class App extends Component {
@@ -23,8 +23,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/choose' component={Difficulty} />
-            {/* <Route path='/games' component={GameBoard} /> */}
-            <Route path='/games/:id' component={Testboard} />
+            <Route path='/games/:id' component={GameBoard} />
+            {/* <Route path='/games/:id' component={Testboard} /> */}
           </Switch>
         </main>
         <Footer />

@@ -37,7 +37,7 @@ header {
 }
 
 main {
-  height: 600px;
+  // height: 600px;
   display: flex;
   justify-content: center;
   margin: auto;
@@ -45,6 +45,7 @@ main {
   font-family: 'Press Start 2P', cursive;
 
   .Title {
+    height: 600px;
     display: flex;
     flex-direction: column;
     margin: 0 auto 10px auto;
@@ -118,45 +119,6 @@ main {
           to { transform: rotateY(360deg); }
         }
 
-        @keyframes bounce-top {
-          0% {
-            transform: translateY(-45px);
-            animation-timing-function: ease-in;
-            opacity: 1;
-          }
-          24% {
-            opacity: 1;
-          }
-          40% {
-            transform: translateY(-24px);
-            animation-timing-function: ease-in;
-          }
-          65% {
-            transform: translateY(-12px);
-            animation-timing-function: ease-in;
-          }
-          82% {
-            transform: translateY(-6px);
-            animation-timing-function: ease-in;
-          }
-          93% {
-            transform: translateY(-4px);
-            animation-timing-function: ease-in;
-          }
-          25%,
-          55%,
-          75%,
-          87% {
-            transform: translateY(0px);
-            animation-timing-function: ease-out;
-          }
-          100% {
-            transform: translateY(0px);
-            animation-timing-function: ease-out;
-            opacity: 1;
-          }
-        }
-
         @keyframes float {
   	      0% {
   		      box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
@@ -176,9 +138,10 @@ main {
   }
 
   .Difficulty {
+    min-height: 600px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     margin: 50px auto;
 
     h3 {
@@ -187,7 +150,11 @@ main {
       color: red;
     }
 
-    a {
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      border: none;
+      background-color: transparent;
       margin: 5px;
       text-align: center;
       text-decoration: none;
@@ -199,10 +166,25 @@ main {
     }
   }
 
+  .gameboard {
+    min-height: 600px;
+  }
+
   .Game {
+    // min-height: 600px;
     margin-top: 50px;
-    font-size: 2em;
-    color: red;
+    // font-size: 2em;
+    color: #ccc;
+    background-color: #ccc;
+    border-radius: 2px;
+
+    td {
+      background-color: hsl(0, 0%, 31%);
+      height: 18px;
+      width: 18px;
+      text-align: center;
+      border-radius: 2px;
+    }
   }
 }
 
@@ -212,7 +194,7 @@ footer {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
+  margin: 20px auto 0 auto;
   // position: absolute;
   // bottom: 0;
   // left: 0;
