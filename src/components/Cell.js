@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { observer } from 'mobx-react'
+import current from '../stores/game'
+import { check, flag } from '../stores/api'
 
 const classMap = {
   ' ': 'empty',
@@ -8,23 +11,30 @@ const classMap = {
   '*': 'bomb'
 }
 
+@observer
 class Cell extends Component {
-  static propTypes = {
-    value: React.PropTypes.string.isRequired,
-    handleCheck: React.PropTypes.func.isRequired,
-    handleFlag: React.PropTypes.func.isRequired
+  _click = e => {
+    check(this.props.id, this.props.row, this.props.col)
+    .then(data => {
+      current.game = data
+    })
+  }
+
+  _flagCell = e => {
+    e.preventDefault()
+    flag(this.props.id, this.props.row, this.props.col)
+      .then(data => {
+        current.game = data
+      })
   }
 
   render () {
-    return <td onClick={() => this.props.handleCheck()}
-      onContextMenu={(e) => {
-        e.preventDefault()
-        this.props.handleFlag()
-      }}
-      className={classMap[this.props.value] || 'numbered'}>
-      {this.props.value.match(/\d/) ? this.props.value : null}
-    </td>
+    return <div className={'Cell ' + classMap[this.props.value] || 'numbered'}
+      style={{gridRow: `${this.props.row + 1}`, gridCol: `${this.props.col + 1}fr`}}
+      onClick={this._click}
+      onContextMenu={this._flagCell}>
+      <span>{this.props.value.match(/\d/) ? this.props.value : null}</span>
+    </div>
   }
 }
-
 export default Cell

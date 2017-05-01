@@ -1,48 +1,47 @@
 import React, { Component } from 'react'
-import store from './store'
+import Cell from './Cell'
 import { observer } from 'mobx-react'
+import { checkGame, createGame } from '../stores/api'
+import current from '../stores/game'
 
 @observer
 class Testboard extends Component {
   componentDidMount () {
-    const id = this.props.match.params.id
-    window.fetch(`http://minesweeper-api.herokuapp.com/games/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        store.board = data.board
-      })
+    checkGame(this.props.match.params.id)
+    .then(data => {
+      current.game = data
+    })
   }
 
-  _click = (x, y) => {
-    const id = this.props.match.params.id
-    window.fetch(`http://minesweeper-api.herokuapp.com/games/${id}/check`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        row: y,
-        col: x
-      })
-    })
-    .then(res => res.json())
+  _click = () => {
+    createGame(current.game.difficulty)
     .then(data => {
-      store.board = data.board
+      current.game = data
+      window.location = `/game/${data.id}`
     })
   }
 
   render () {
-    return <table>
-      <tbody>
-        {store.board.map((row, y) => {
-          return <tr key={y}>
-            {row.map((col, x) => {
-              return <td className='cell' key={x} onClick={() => {
-                this._click(x, y)
-              }}>{col}</td>
-            })}
-          </tr>
-        })}
-      </tbody>
-    </table>
+    const gameBoard = current.game.board.map((_, i) => {
+      return current.game.board[i].map((col, j) => {
+        console.log(col)
+        return <Cell row={i} col={j}
+          value={col.toString()}
+          content={current.game.board[i][j]}
+          id={this.props.match.params.id} />
+      })
+    })
+    if (current.game.state === 'won') {
+      setTimeout(() => { window.location = '/winner' }, 1000)
+    } else if (current.game.state === 'lost') {
+      setTimeout(() => { window.location = '/loser' }, 1000)
+    } else {
+      return <div className='gameboard'>
+        <div className='gameGrid'>
+          {gameBoard}
+        </div>
+      </div>
+    }
   }
 }
 

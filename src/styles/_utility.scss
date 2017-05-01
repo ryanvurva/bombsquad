@@ -4,6 +4,7 @@ $base-text-size: 16px;
 $base-font-family: 'Bungee Inline', cursive;
 $yellow: hsl(45, 80%, 51%);
 $fadedyellow: hsla(45, 80%, 51%, 0.9);
+$grey: hsl(0, 0%, 31%);
 
 // Remove the browsers built-in styling for lists elements.
 @mixin reset-list {
@@ -23,4 +24,32 @@ $fadedyellow: hsla(45, 80%, 51%, 0.9);
   #root {
     min-height: 100%;
   }
+}
+
+@mixin flex ($direction, $justify, $alignItems) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $alignItems;
+}
+
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin backgroundProps($url, $size) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  background-size: $size;
+  background-position: center;
+}
+
+@mixin linearGrad($colorBegin, $colorEnd) {
+  background:
+    linear-gradient(
+      135deg,
+      $colorBegin 0%,
+      $colorEnd 100%
+    );
 }

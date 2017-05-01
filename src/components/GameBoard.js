@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import store from './store'
 import { observer } from 'mobx-react'
+// import { checkGame, createGame } from '../stores/api'
+// import current from '../stores/game'
 
 @observer
 class GameBoard extends Component {

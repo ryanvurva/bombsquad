@@ -24,15 +24,27 @@ body {
 }
 
 header {
-  display: flex;
+  // display: flex;
+   text-align: center;
   justify-content: center;
-  margin: auto;
+  margin: 0 auto 20px auto;
 
   h1 {
     color: yellow;
-    text-decoration: underline;
+    // text-decoration: underline;
     font-size: 3em;
     margin-bottom: 0;
+  }
+
+  h4 {
+    color: yellow;
+    text-decoration: underline;
+    // font-size: 3em;
+    margin-bottom: 0;
+
+    &:hover {
+      color: red;
+    }
   }
 }
 
@@ -178,13 +190,54 @@ main {
     background-color: #ccc;
     border-radius: 2px;
 
+    .gameGrid {
+      display: grid;
+      grid-auto-columns: minmax(26px, 26px);
+      grid-auto-rows: minmax(26px, 26px);
+      margin: 1em;
+    }
+
     td {
-      background-color: hsl(0, 0%, 31%);
+      // background-color: $grey;
+      background-color: darken(red, 5%);
+      // background-color: red;
       height: 18px;
       width: 18px;
       text-align: center;
       border-radius: 2px;
+      cursor: pointer;
+      margin: 0.1em;
+
+      &:hover {
+        background-color: lighten(hsl(25, 88%, 42%), 10%);
+        // transform: scale(1.15);
+      }
     }
+
+    // .unrevealed,
+    // .numbered {
+    //   font-family: inherit;
+    //   background-color: darken($grey, 10%);
+    // }
+    //
+    // .empty {
+    //   background-color: $grey;
+    // }
+    //
+    // .bomb,
+    // .flagbomb {
+    //   background-color: darken($grey, 10%);
+    //
+    //   // @include backgroundProps('../images/bombFlag.svg', contain);
+    //   // @include fadeIn(0.3s);
+    // }
+    //
+    // .flagged {
+    //   background-color: darken($grey, 10%);
+    //
+    //   // @include backgroundProps('../images/flag.svg', contain);
+    //   // @include fadeIn(0.3s);
+    // }
   }
 }
 
